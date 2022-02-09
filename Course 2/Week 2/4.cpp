@@ -2,9 +2,6 @@
 #include <iomanip>
 #include <sstream>
 using namespace std;
-int year = 0;
-int month = 0;
-int date = 0;
 int char_convert_integer(char n){
     return (int)n - 48;
 }
@@ -26,7 +23,7 @@ bool leap_year(int n){
     } else return false;
 }
 
-void date_next(int, int, int){
+void date_next(int date, int month, int year){
     if (date <= 27){
         date = date + 1;
     }
@@ -67,6 +64,8 @@ void date_next(int, int, int){
             year = year + 1;
         }
     }
+    cout << year << '-' << setfill('0') << setw(2) << month 
+                << '-' << setfill('0') << setw(2) << date; 
 }
   
 int main(){
@@ -76,23 +75,10 @@ int main(){
     for (int i = 0; i < 10; i++){
         yyyy_mm_dd[i] = original_date[i];
     }
-    year = yyyy_conversion(yyyy_mm_dd);
-    month = mm_conversion(yyyy_mm_dd);
-    date = dd_conversion(yyyy_mm_dd);
+    int year = yyyy_conversion(yyyy_mm_dd);
+    int month = mm_conversion(yyyy_mm_dd);
+    int date = dd_conversion(yyyy_mm_dd);
     date_next(date, month, year);
-    string yyyy;
-    string mm;
-    string dd;
-    stringstream ss1;
-    ss1 << year;
-    ss1 >> yyyy;
-    stringstream ss2;
-    ss2 << month;
-    ss2 >> mm;
-    stringstream ss3;
-    ss3 << date;
-    ss3 >> dd;
-    cout << yyyy << '-' << setfill('0') << setw(2) << mm 
-                << '-' << setfill('0') << setw(2) << dd; 
+
     return 0;
 }
