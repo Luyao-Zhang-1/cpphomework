@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include <sstream>
 using namespace std;
 int year = 0;
@@ -34,7 +35,7 @@ void date_next(int, int, int){
             if (leap_year(year) == true){
                 date = date + 1;
             } else {
-                date = 0;
+                date = 1;
                 month = 3;
             }
         }
@@ -42,7 +43,7 @@ void date_next(int, int, int){
         }
     else if (date == 29){
         if (month == 2){
-        date = 0;
+        date = 1;
         month = 3;
         }
         else date = 30;
@@ -52,13 +53,13 @@ void date_next(int, int, int){
             date = 31;
         }
         else {
-            date = 0;
+            date = 1;
             month = month + 1;
         }
     } 
     else if (date == 31){
-        if (month != 12){
-        date = 0;
+        date = 1;
+        if (month != 12){        
         month = month + 1;
         }
         else {
@@ -91,12 +92,7 @@ int main(){
     stringstream ss3;
     ss3 << date;
     ss3 >> dd;
-    if (month < 10){
-        mm = '0' + mm;
-    }
-    if (date < 10){
-        dd = '0' + dd;
-    }
-    cout << yyyy << '-' << mm << '-' <<dd;
+    cout << yyyy << '-' << setfill('0') << setw(2) << mm 
+                << '-' << setfill('0') << setw(2) << dd; 
     return 0;
 }
