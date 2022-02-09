@@ -46,7 +46,7 @@ void date_next(int date, int month, int year){
         else date = 30;
     }
     else if (date == 30){
-        if (month == 1 || 3 || 5 || 7 || 8 || 10 || 12){
+        if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12){
             date = 31;
         }
         else {
@@ -65,12 +65,12 @@ void date_next(int date, int month, int year){
         }
     }
     cout << year << '-' << setfill('0') << setw(2) << month 
-                << '-' << setfill('0') << setw(2) << date; 
+                << '-' << setfill('0') << setw(2) << date << endl; 
 }
   
 int main(){
     string original_date;
-    cin >> original_date;
+    while (cin >> original_date){
     char yyyy_mm_dd[10];
     for (int i = 0; i < 10; i++){
         yyyy_mm_dd[i] = original_date[i];
@@ -79,6 +79,6 @@ int main(){
     int month = mm_conversion(yyyy_mm_dd);
     int date = dd_conversion(yyyy_mm_dd);
     date_next(date, month, year);
-
+}
     return 0;
 }
